@@ -5,13 +5,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="/dist/output.css" rel="stylesheet">
+    <script src="memory.js" defer></script>
     <title>Memory</title>
 </head>
 
-<body>
-    <h1 class="text-4xl">
-        Hello, World!
-    </h1>
+<body class="bg-gray-100">
+    <header class="h-15 bg-blue-500 text-white text-center flex items-center justify-center">
+        <h1 class="text-2xl font-semibold">Memory</h1>
+    </header>
+
+    <div class="flex justify-center p-4">
+        <div class="grid grid-cols-8 gap-4">
+            <script>
+                const gridContainer = document.querySelector('.grid-cols-8');
+                for (let i = 0; i < 40; i++) {
+                    const gridSquare = document.createElement('div');
+                    gridSquare.classList.add('w-40', 'h-40', 'bg-blue-500', 'grid-square');
+                    gridContainer.appendChild(gridSquare);
+                }
+            </script>
+        </div>
+    </div>
 </body>
 
 </html>
