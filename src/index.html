@@ -9,22 +9,14 @@
     <title>Memory</title>
 </head>
 
-<body class="bg-gray-100">
-    <header class="h-15 bg-blue-500 text-white text-center flex items-center justify-center">
-        <h1 class="text-2xl font-semibold">Memory</h1>
+<body class="bg-background flex flex-col min-w-max" onload="setup()">
+
+    <header class="h-11 bg-primary text-white text-center flex items-center justify-center">
+        <h1 class="text-2xl font-bold text-text">Memory</h1>
     </header>
 
     <div class="flex justify-center p-4">
-        <div class="grid grid-cols-8 gap-4">
-            <script>
-                const gridContainer = document.querySelector('.grid-cols-8');
-                for (let i = 0; i < 40; i++) {
-                    const gridSquare = document.createElement('div');
-                    gridSquare.classList.add('w-40', 'h-40', 'bg-blue-500', 'grid-square');
-                    gridContainer.appendChild(gridSquare);
-                }
-            </script>
-        </div>
+        <div class="grid grid-cols-8 gap-4"></div>
     </div>
 </body>
 
