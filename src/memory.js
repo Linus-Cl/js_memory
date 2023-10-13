@@ -14,6 +14,10 @@ function setup() {
         gridSquare.classList.add('card', 'w-40', 'h-40', 'bg-primary', 'grid-square', 'hover:bg-accent', 'transition', 'transform', 'hover:scale-105');
         gridContainer.appendChild(gridSquare);
     }
+    let pairs = getPairArray();
+    let goatPair = pairs[0];
+    document.getElementById(goatPair[0]).className = "card w-40 h-40 bg-goat bg-cover bg-center bg-no-repeat grid square hover:transition transform hover:scale-105";
+    document.getElementById(goatPair[1]).className = "card w-40 h-40 bg-goat bg-cover bg-center bg-no-repeat grid square hover:transition transform hover:scale-105";
 }
 
 function flip(id) {
@@ -44,4 +48,13 @@ function* randomCardsGenerator(numberOfCards) {
             yield randomIndex;
         }
     }
+}
+
+function getPairArray() {
+    let arr = [];
+    for (let i = 0; i < 20; i++) {
+        console.log("test" + i);
+        arr.push([randomCard.next().value, randomCard.next().value]);
+    }
+    return arr;
 }
