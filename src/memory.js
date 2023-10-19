@@ -10,7 +10,7 @@ const pictureCardSuffix = ' card w-36 h-36  bg-cover bg-center bg-no-repeat grid
 let evenOddCount = 0;
 let lastActiveTuple = null;
 let lastActiveId = null;
-let score = null;
+let score = 0;
 
 function getRandomInt(max) {
     return Math.floor(Math.random() * max);
@@ -18,6 +18,7 @@ function getRandomInt(max) {
 
 function setup() {
     console.log("setup");
+
     for (let i = 0; i < 40; i++) {
         const gridSquare = document.createElement('div');
         gridSquare.id = i;
@@ -25,6 +26,14 @@ function setup() {
         gridSquare.className = defaultCardStyle;
         gridContainer.appendChild(gridSquare);
     }
+
+    if (localStorage) {
+        console.log("highscore init");
+        if (localStorage.getItem("highscore") === undefined) {
+            localStorage.setItem("highscore", 0);
+        }
+    }
+    updateScore(0);
 }
 
 function flip(id) {
@@ -56,7 +65,7 @@ function flip(id) {
     }
     else {
         if (activeTuple === lastActiveTuple) {
-            score++;
+            updateScore();
             return;
         }
         else {
@@ -92,4 +101,23 @@ function getPairArray() {
         arr.push([randomCard.next().value, randomCard.next().value, picIterator.next().value]);
     }
     return arr;
+}
+
+function updateScore(newScore) {
+    if (newScore === undefined) {
+        score++;
+    }
+    else {
+        score = newScore;
+    }
+
+    if (localStorage) {
+        localStorage.setItem("currentScore", score);
+        if (localStorage.getItem("currentScore") > localStorage.getItem("highscore")) {
+            localStorage.setItem("highscore", localStorage.getItem("currentScore"));
+        }
+    }
+
+    document.getElementById("highscore-text").innerHTML = `Highscore: ${localStorage.getItem("highscore")}`;
+    document.getElementById("score-text").innerHTML = `Score: ${score}`;
 }
